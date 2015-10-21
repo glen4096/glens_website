@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+Glen Anderson
+UMass Lowell Computer Science
+GUI I Website
+assignment6.html
+-->
+
+<html>
+    <head>
+        <style>@import url(css_styles.css)</style>
+        <title>Glen Anderson</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Use my external javascript file for assignment 6
+        <script src= "./myjs/assignment6js.js" type="text/javascript"></script>-->
+        
+        <script>
+            var myForm;
+            
+            function init() {
+                myForm = document.getElementById( "myForm" ) ;
+            }
+            
+            function multiplyFunction(){
+                var plier = [];
+                var cand = [];
+                strcontent ="";
+
+                cand[0]= parseInt(myForm.num1.value);
+                cand[1]= parseInt(myForm.num2.value);
+                cand[2]= parseInt(myForm.num3.value);
+                cand[3]= parseInt(myForm.num4.value);
+                
+                plier[0]= parseInt(myForm.mult1.value);
+                plier[1]= parseInt(myForm.mult2.value);
+                plier[2]= parseInt(myForm.mult3.value);
+                plier[3]= parseInt(myForm.mult4.value);
+                               
+                for (var c=0; c<4; c++){
+                    if((cand[c]<0) || (plier[c] <0)||
+                        (cand[c]>1000) || (plier[c] >1000)||
+                        (isNaN(cand[c])) || (isNaN(plier[c]))){
+                        document.getElementById("contents").innerHTML = "<p>Only numbers between 0 and 1000 inclusive, please.</p>";
+                        return false;
+                    }
+                }
+            
+                strcontent += '<table width="400px">';           
+                strcontent += '<th>' + '_' + '</th>' +
+                              '<th>' + plier[0] + '</th>' +
+                              '<th>' + plier[1] + '</th>'+
+                              '<th>' + plier[2] + '</th>' +
+                              '<th>' + plier[3] + '</th>' ;
+                      
+                for(var row=0; row<4; row++){
+                    strcontent+='<tr>';
+                             strcontent+= '<th>' + cand[row] + '</th>';
+          
+                    for( var col=0; col<4; col++){
+                        strcontent+='<td>' +(plier[col] * cand[row])+ '</td>';
+                    }
+                    strcontent+='<tr>';
+                }
+                  
+                strcontent+='</table>';
+               
+            document.getElementById( "contents" ).innerHTML = strcontent ;
+            return false;
+        }
+            
+        </script>    
+        
+    </head>
+    
+    <body onload="init()"> 
+        
+        <!-- HEADER (main title, which is my name on top of page) -->
+        <header>    
+            <h1> <strong> Glen Anderson </strong> </h1>
+            <hr>     
+        </header>
+                
+        <!-- NAV BAR, navigation bar on left side of page -->
+        <div id = "nav"> 
+            <a href ="index.html"> Home </a><br>
+            <a href ="aboutme.html">About me</a><br>
+            <a href ="assignments.html"> Assignments</a><br>
+            <a href ="contact.html">Contact</a><br>
+                  
+        </div>
+         
+        <!-- CONTENT, main article on main page with information -->
+        <article class = "content">
+            <h2>Assignment 6 </h2>
+
+            <!-- form to get numbers from user input -->
+
+            <h4>Choose numbers between 0 and 1000 inclusive for to be multiplied in the table: </h4>
+            
+            <form id="myForm" method="get" onsubmit="return multiplyFunction();">
+                <fieldset>
+                    <legend>Row Numbers</legend>
+                    <input id="num1" name="num1" type="number" min="0" value="1"> 
+                    <input id="num2" name="num2" type="number" min="0" value="2">
+                    <input id="num3" name="num3" type="number" min="0" value="3">
+                    <input id="num4" name="num4" type="number" min="0" value="4">
+                </fieldset>
+                <br>
+                <fieldset>
+                    <legend>Column Numbers</legend>
+                    <input id="mult1" name="mult1" type="number" min="0" value="1"> 
+                    <input id="mult2" name="mult2" type="number" min="0" value="2">
+                    <input id="mult3" name="mult3" type="number" min="0" value="3">
+                    <input id="mult4" name="mult4" type="number" min="0" value="4">
+                </fieldset>
+                <br>
+                <input id="btnsubmit" name="btnsubmit" type="submit" value="Multiply"> 
+            </form>
+            
+            <br><br>
+            <!--Multiplication built from user input -->
+            <span id="contents"></span>
+
+        </article>     
+        
+        <!--Footer -->
+        <address> 
+            Glen Anderson - Updated 10/19/2015 <br> 
+        </address>
+        
+    </body>
+</html>
