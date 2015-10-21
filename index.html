@@ -1,12 +1,13 @@
-<!DOCTYPE html>
 <!--
 Glen Anderson
 UMass Lowell Computer Science
 GUI I Website
 index.html
 -->
+<!DOCTYPE html>
 <html>
     <head>
+        
         <style>@import url(css_styles.css)</style>
         <title>Glen Anderson</title>
         <meta charset="UTF-8">
@@ -17,28 +18,39 @@ index.html
         
         <!-- HEADER (main title, which is my name on top of page) -->
         <header>    
+            
             <h1> <strong> Glen Anderson </strong> </h1>
+  
+            <div class = "image-cropper">
+                <!--non-copyrighted image taken with general permission rights from www.nasa.gov-->
+                <!see for more information: --https://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html-->
+                <img src ="space.jpg" alt="space" >
+            </div>
+            
             <hr>     
         </header>
-        
-        
+           
         
         <!-- NAV BAR, navigation bar on left side of page -->
         <div id = "nav"> 
-            <a href ="index.html"> Home </a><br>
+            <a> Home </a><br>
             <a href ="aboutme.html">About me</a><br>
             <a href ="assignments.html"> Assignments</a><br>
-            <a href ="contact.html">Contact</a><br>       
+            <a href ="contact.html">Contact</a><br>
         </div>
         
         
-        <!-- CONTENT, main article on main page with test information -->
+        <!-- content class- This is positioned
+        below the header and to the right of the nav, and
+        will hold the relevant content of each page-->
         <article class = "content">
-            <h2>Website Under Construction </h2>
-            <p>
-                <h5>Here is some complicated information about brain-derived neurotrophic factors from <a href="https://en.wikipedia.org/wiki/Brain-derived_neurotrophic_factor">here</a>
-                    that I put on this page for testing purposes: </h5>
-            </p>
+            
+            <h2>   Website Under construction  </h2> 
+           
+            <h4>Here is some information about brain-derived neurotrophic factors from <a href="https://en.wikipedia.org/wiki/Brain-derived_neurotrophic_factor">here</a>
+                    that I put on this page for layout testing: 
+            </h4>
+            
             <p>
                 The BDNF protein is encoded by a 
                 gene that is also called BDNF, found 
@@ -67,15 +79,7 @@ index.html
                 NMDA receptor activation is essential to producing the activity-dependent molecular changes involved in the formation of new memories.
                 Following exposure to an enriched environment, BDNF and NR1 phosphorylation levels are upregulated simultaneously, probably because 
                 BDNF is capable of phosphorylating NR1 subunits, in addition to its many other effects.[33][34] One of the primary ways BDNF can 
-                modulate NMDA receptor activity is through phosphorylation and activation of the NMDA receptor one subunit, particularly at the 
-                PKC Ser-897 site.[33] The mechanism underlying this activity is dependent upon both ERK and PKC signaling pathways, each acting 
-                individually, and all NR1 phosphorylation activity is lost if the TrKB receptor is blocked.[33] PI3 kinase and Akt are also essential in 
-                BDNF-induced potentiation of NMDA receptor function and inhibition of either molecule completely eliminated receptor activity.[34] BDNF 
-                can also increase NMDA receptor activity through phosphorylation of the NR2B subunit. BDNF signaling leads to the autophosphorylation 
-                of the intracellular domain of the TrkB receptor (ICD-TrkB). Upon autophosphorylation, Fyn associates with the pICD-TrkB through its 
-                Src homology domain 2 (SH2) and is phosphorylated at its Y416 site.[35][36] Once activated, Fyn can bind to NR2B through its SH2 
-                domain and mediate phosphorylation of its Tyr-1472 site.[37] Similar studies have suggested Fyn is also capable of activating NR2A 
-                although this was not found in the hippocampus.[38][39] Thus, BDNF can increase NMDA receptor activity through Fyn activation. 
+                modulate NMDA receptor activity is through.....can increase NMDA receptor activity through Fyn activation. 
                 This has been shown to be important for processes such as spatial memory in the hippocampus, demonstrating the therapeutic and 
                 functional relevance of BDNF-mediated NMDA receptor activation.[38]
                 Synapse stability
@@ -101,7 +105,13 @@ index.html
             involved in these enrichment-induced processes than any other molecule and is strongly regulated by calcium activity making it 
             incredibly sensitive to neuronal activity.
             </p>
-        </article>     
-    
-    </body>
+        </article>   
+        
+        <!--Footer -->
+        <address> 
+            Glen Anderson - Updated 10/19/2015 <br>
+            Space images taken from www.nasa.gov under general permission rights  
+        </address>
+          
+    </body>   
 </html>

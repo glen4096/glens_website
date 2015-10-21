@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Author" content="Jesse M. Heines, heines@cs.uml.edu" />
+  <title>Form and Button Demonstration</title>  <!-- required for XHTML -->
+  
+  <!-- note that JavaScript functions should *always* be defined in the HEAD section -->
+  <script type="text/javascript">
+    // <![CDATA[
+    var nVersions = 6 ;   // number of different versions of processing functions
+    var frm ;             // the HTML form as a JavaScript object
+    var placeholder ;     // the page element where the result will be displayed
+    
+    // this function determines which doAddn function is called
+    // note that passed parameters are simply ignored if they are not in the function
+    //    definition, although they can be used to differentiate overloaded functions
+    //    if multiple functions with the same name exist
+    function doAdd() {
+      frm.t3.value = "" ;                         // reset third field to blank
+      for ( var k = 0 ; k < nVersions ; k++ ) {   // find the radio button that's checked
+        if ( frm.funcToUse[ k ].checked ) {
+          switch ( k ) {    // execute the appropriate function
+            case 0 : return doAdd1() ; break ;
+            case 1 : return doAdd2( frm ) ; break ;
+            case 2 : return doAdd3() ; break ;
+            case 3 : return doAdd4() ; break ;
+            case 4 : return doAdd5() ; break ;
+            case 5 : return doAdd6() ; break ;
+          }
+        }
+      }
+      return doAdd5() ;   // if none are checked, call Version 5
+    }
+
+    // this function sums the values of the first two text fields
+    //    and puts the result in the third text field
+    // Version 1 - using the form's frm id
+    function doAdd1() {
+      placeholder.innerHTML = "<p><i>Using function:&nbsp;</i> <b>doAdd1()</p>" ;
+      var n1 = parseInt( frm.t1.value ) ;     // convert first field to a number
+      var n2 = parseInt( frm.t2.value ) ;     // convert second field to a number
+      frm.t3.value = n1 + n2 ;                // set third field to their sum
+      return false ;                          // inhibit the form action
+    }
+          
+    // Version 2 - using "this" passed from the form
+    function doAdd2( frm ) {
+      placeholder.innerHTML = "<p><i>Using function:&nbsp;</i> <b>doAdd2()</p>" ;
+      var n1 = parseInt( frm.t1.value ) ;     // convert first field to a number
+      var n2 = parseInt( frm.t2.value ) ;     // convert second field to a number
+      frm.t3.value = n1 + n2 ;                // set third field to their sum
+      return false ;                          // inhibit the form action
+    }
+
+    // Version 3 - using the W3C standard getElementById method
+    function doAdd3() {
+      placeholder.innerHTML = "<p><i>Using function:&nbsp;</i> <b>doAdd3()</p>" ;
+      var n1 = parseInt( frm.t1.value, 10 ) ; // convert first field to a number
+      var n2 = parseInt( frm.t2.value, 10 ) ; // convert second field to a number
+      frm.t3.value = n1 + n2 ;                // set third field to their sum
+      return false ;                          // inhibit the form action
+    }
+
+    // Version 4 - using parseFloat instead of parseInt
+    function doAdd4() {
+      placeholder.innerHTML = "<p><i>Using function:&nbsp;</i> <b>doAdd4()</p>" ;
+      var n1 = parseFloat( frm.t1.value ) ;   // convert first field to a number
+      var n2 = parseFloat( frm.t2.value ) ;   // convert second field to a number
+      frm.t3.value = n1 + n2 ;                // set third field to their sum
+      return false ;                          // inhibit the form action
+    }
+
+    // Version 5 - performs form validation
+    function doAdd5() {
+      placeholder.innerHTML = "<p><i>Using function:&nbsp;</i> <b>doAdd5()</p>" ;
+      
+      // clear background color of the two input text boxes
+      frm.t1.style.backgroundColor = "white" ;
+      frm.t2.style.backgroundColor = "white" ;
+
+      // make sure that a value is supplied in the first text box
+      if ( frm.t1.value == "" ) {
+        alert( "Please enter a value in the first text box." ) ;
+        frm.t1.style.backgroundColor = "red" ;
+        frm.t1.focus() ;    // set focus to empty text box
+        return false ;
+      }
+      
+      // make sure that a value is supplied in the second text box
+      if ( frm.t2.value == "" ) {
+        alert( "Please enter a value in the second text box." ) ;
+        frm.t2.style.backgroundColor = "red" ;
+        frm.t2.focus() ;    // set focus to empty text box
+        return false ;
+      }
+      
+      // values are OK, do the addition
+      var n1 = parseFloat( frm.t1.value ) ;   // convert first field to a number
+      var n2 = parseFloat( frm.t2.value ) ;   // convert second field to a number
+      frm.t3.value = n1 + n2 ;                // set third field to their sum
+      return false ;                          // inhibit the form action
+    }
+
+    // Version 6 - using concatenation
+    function doAdd6() {
+      placeholder.innerHTML = "<p><i>Using function:&nbsp;</i> <b>doAdd6()</p>" ;
+      var n1 = frm.t1.value ;   // get the string in the first field
+      var n2 = frm.t2.value ;   // get the string in the second field
+      frm.t3.value = n1 + n2 ;  // set third field to their concatenation
+      return false ;            // inhibit the form action
+    }
+
+    // this function is a "no-op" (performs no operation) and could be used as the
+    //    action of a form to prevent the form from reloading
+    function doNothing()
+    { }   // intentionally left blank
+    
+    // inititialization of global variables after body load
+    function init() {
+      frm = document.getElementById( "frm" ) ;
+      placeholder = document.getElementById( "placeholder" ) ;
+    }
+    // ]]>
+  </script>
+</head>
+
+<!-- after the page completes loading, set focus to the first text field -->
+<body onload="init() ; document.getElementById('t1').focus();">
+
+  <!-- blank action reloads page, so onsubmit must return false to inhibit this -->
+  <form id="frm" action="javascript:void(0)" onsubmit="return doAdd();">
+    <!-- radio buttons for the desired processing function -->
+    <p>  <!-- required for XHTML -->
+      <i>Version of processing function to use:</i>&nbsp;&nbsp;
+      <input type="radio" id="v1" name="funcToUse" value="1" />1&nbsp;&nbsp;
+      <input type="radio" id="v2" name="funcToUse" value="2" />2&nbsp;&nbsp;
+      <input type="radio" id="v3" name="funcToUse" value="3" />3&nbsp;&nbsp;
+      <input type="radio" id="v4" name="funcToUse" value="4" 
+             checked="checked" />4&nbsp;&nbsp;
+      <input type="radio" id="v5" name="funcToUse" value="5" />5&nbsp;&nbsp;
+      <input type="radio" id="v6" name="funcToUse" value="6" />6
+    </p>
+    
+    <!-- input fields -->
+    <p>  <!-- required for XHTML -->
+      <input type="text" id="t1" size="5" tabindex="1" /> +&nbsp;
+      <input type="text" id="t2" size="5" tabindex="2" /> =&nbsp;
+      
+      <!--  
+        note that this input control has no tab index and therefore will not be
+        selected when the user presses the tab key to move from field to field
+        also note that the readonly attribute does not prevent the result field 
+        from getting focus, therefore we trap the onfocus event and explicitly
+        set focus to the first field when it occurs 
+      -->
+      <input type="text" id="t3" size="5" readonly 
+             onfocus="frm.t1.focus()"></input>
+  
+      <!-- action button -->
+      &nbsp;
+      <input type="submit" value="Do the Addition" tabindex="3" />
+             
+      <!-- alternate action button solution 
+        <input type="button" onclick="doAdd();" value="Do the Addition"></input>
+      -->
+    </p>
+  </form>
+
+  <!-- this placeholder will be replaced with text from each of the functions -->
+  <div id="placeholder">
+    <script type="text/javascript">
+      // <![CDATA[
+      document.writeln( "<p><i>Page loaded:&nbsp;</i> " + new Date() + "</p>" ) ;
+    // ]]>
+    </script>
+  </div>
+  
+  <!-- explanations of versions -->
+  <ul style="margin-left: -25px">
+    <li>Version 1 uses the form&rsquo;s id &mdash; this version used to not work
+      in Firefox</li>
+    <li>Version 2 uses the &ldquo;this&rdquo; object passed from the form &mdash;
+      this version works in both IE and Firefox</li>
+    <li>Version 3 uses the the W3C standard getElementById method &mdash; and
+      therefore should work in all browsers</li>
+    <li>Version 4 uses <code>parseFloat</code> instead of <code>parseInt</code></li>
+    <li>Version 5 does a bit of form validation</li>
+    <li>Version 6 does concatenation rather than addition</li>
+  </ul>
+
+  <!-- W3C XHTML 1.0 validation icon -->
+  <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml10" style="border: 0"
+        alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+  </p>
+  
+  <!-- link to code listing -->
+  <p>Code Listing:&nbsp;
+    <a href="formadd-listing.html"><code>formadd-listing.html</code></a></p>
+
+</body>
+</html>
