@@ -134,7 +134,7 @@ div.image-cropper img{
 /* Footer */
 address{
     text-align: center;
-    float: bottom; 
+   /*float: bottom*/ 
 }
 
 input[type=submit] {
