@@ -114,6 +114,7 @@ ul{
     margin-right: 6%;
     line-height: 120%;
 }
+
 /* image cropping trick from here http://www.squareonemd.co.uk/how-to-crop-an-image-with-a-css-class/ */
 .image-cropper {
   margin-top: -2.6%; /*should be controlled by header*/
@@ -134,7 +135,7 @@ div.image-cropper img{
 /* Footer */
 address{
     text-align: center;
-    float: bottom; 
+   /*float: bottom*/ 
 }
 
 input[type=submit] {
@@ -171,4 +172,10 @@ th{
 
 form{
     margin-right:400px;
+}
+
+ article.content h2{
+    text-shadow: 0px 0px 5px rgba(204, 230, 255,1);
+    text-shadow: 0px 0px 14px rgba(204, 230, 255,1);
+    text-shadow: 0px 0px 20px rgba(204, 230, 255,1);
 }

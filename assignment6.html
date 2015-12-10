@@ -8,7 +8,7 @@ assignment6.html
 
 <html>
     <head>
-        <style>@import url(css_styles.css)</style>
+        <style>@import url(./styles/css_styles.css)</style>
         <title>Glen Anderson</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +23,13 @@ assignment6.html
                 myForm = document.getElementById( "myForm" ) ;
             }
             
+            /* this function is called when submit is pressed.*/
             function multiplyFunction(){
+               
                 var plier = [];
                 var cand = [];
                 strcontent ="";
-
+                //get and parse numbers from the form
                 cand[0]= parseInt(myForm.num1.value);
                 cand[1]= parseInt(myForm.num2.value);
                 cand[2]= parseInt(myForm.num3.value);
@@ -37,7 +39,11 @@ assignment6.html
                 plier[1]= parseInt(myForm.mult2.value);
                 plier[2]= parseInt(myForm.mult3.value);
                 plier[3]= parseInt(myForm.mult4.value);
-                               
+                
+                //perform validation checks and report to user if input isn't valid.
+                //*NOTE*: because numbers below 0 are automatically blocked by javascript, I
+                        //added the additional requirement that the number needs to be below 1000
+                        // to demonstrate my validation method.
                 for (var c=0; c<4; c++){
                     if((cand[c]<0) || (plier[c] <0)||
                         (cand[c]>1000) || (plier[c] >1000)||
@@ -46,7 +52,8 @@ assignment6.html
                         return false;
                     }
                 }
-            
+                
+                //The first row of the table
                 strcontent += '<table width="400px">';           
                 strcontent += '<th>' + '_' + '</th>' +
                               '<th>' + plier[0] + '</th>' +
@@ -56,8 +63,9 @@ assignment6.html
                       
                 for(var row=0; row<4; row++){
                     strcontent+='<tr>';
-                             strcontent+= '<th>' + cand[row] + '</th>';
-          
+                    //first column
+                    strcontent+= '<th>' + cand[row] + '</th>';
+                    //table products
                     for( var col=0; col<4; col++){
                         strcontent+='<td>' +(plier[col] * cand[row])+ '</td>';
                     }
@@ -99,6 +107,8 @@ assignment6.html
 
             <h4>Choose numbers between 0 and 1000 inclusive for to be multiplied in the table: </h4>
             
+            <!-- sets up the form (myForm) and number input boxes. when btnsubmit is pressed,
+                multiplyFunction() is called.-->
             <form id="myForm" method="get" onsubmit="return multiplyFunction();">
                 <fieldset>
                     <legend>Row Numbers</legend>
