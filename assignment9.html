@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+Glen Anderson
+UMass Lowell Computer Science
+GUI I Website
+assignment9.html
+-->
+
+<html>
+    <head> 
+        <style>
+            @import url(./styles/css_styles.css);
+            @import url(./styles/scrabble_css.css);
+        </style>
+        
+        <title>Glen Anderson</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <!--jquery core-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <!--jquery UI plugin-->
+        <script src= "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>        
+        <!--<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.min.js"></script>-->
+        <!-- Use my external javascript file for assignment 8-->
+        <script src="myjs/scrabble.js"></script>
+        <!--<link rel="stylesheet" href="slider.css">-->
+        
+    </head>
+    
+    <body> 
+        <!-- HEADER (main title, which is my name on top of page) -->
+        <header>    
+            <h1> <strong> Glen Anderson </strong> </h1>
+            <hr>     
+        </header>
+                
+        <!-- NAV BAR, navigation bar on left side of page -->
+        <div id = "nav"> 
+            <a href ="index.html"> Home </a><br>
+            <a href ="aboutme.html">About me</a><br>
+            <a href ="assignments.html"> Assignments</a><br>
+            <a href ="contact.html">Contact</a><br>          
+        </div>
+         
+        <!-- CONTENT, main article on main page with information -->
+        <article class = "content">
+            <h2>Assignment 9: jQuery Scrabble </h2>
+        <div id="scrabble">
+            <div>
+                Press 'Play Scrabble' to start, then drag the tiles to the board to make a word. Press 'Play Scrabble' for a new hand or 'Submit Word' to permanently add your score to the total score.
+            </div>
+            <span style="font-size: .7em"> Warning: Dragging tiles across slots without dropping them will cause
+                                           cause score to decrease.
+            </span>
+            <div id="rack"> </div>
+           
+            <!-- button to start playing and reset tiles-->
+            <button id="get_button" onclick="get_pieces()">Play Scrabble</button>
+            
+            <!-- scrabble board slots -->
+            <div class="board">
+                <img class ="board_slot" id="slot1" src="scrabble_pics/plain_slot.jpg" alt="slot1">
+                <img class ="board_slot" id="slot2" src="scrabble_pics/plain_slot.jpg" alt="slot2">
+                <img class ="board_slot" id="slot3" src="scrabble_pics/plain_slot.jpg" alt="slot3">
+                <img class ="board_slot" id="slot4" src="scrabble_pics/triple_slot.jpg" alt="slot4">
+                <img class ="board_slot" id="slot5" src="scrabble_pics/plain_slot.jpg" alt="slot5">
+                <img class ="board_slot" id="slot6" src="scrabble_pics/plain_slot.jpg" alt="slot6">
+                <img class ="board_slot" id="slot7" src="scrabble_pics/plain_slot.jpg" alt="slot7">
+            </div>
+            <!-- scoreboard to display current score and cumulative score -->
+            <div id ="score_board">
+                Score:
+                <span id ="score"> </span>
+                &nbsp; &nbsp; &nbsp;
+                Total Score:
+                <span id ="accum_score"> </span>
+            </div> 
+            <!-- button to add score to cumulative total -->
+            <button id="submit_score" onclick ="score_submit()">Submit Word</button>
+        </div>
+        </article>     
+        <!--Footer -->
+        <address> 
+            Glen Anderson - Updated 12/8/2015 <br> 
+        </address> 
+    </body>
+</html>
